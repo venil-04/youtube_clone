@@ -1,23 +1,32 @@
-import React from 'react'
+import React, { useState } from 'react'
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import AppsIcon from '@mui/icons-material/Apps';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import VideoCallIcon from '@mui/icons-material/VideoCall';
 import { Avatar } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 function Header() {
+    const[input,setinput] = useState('')
+
+
     return (
         <div className='sticky flex justify-between  top-0 bg-white p-2 '>
 
             <div className="left flex items-center space-x-3">
                 <MenuIcon />
+                <Link to='/'>
                 <img src="https://cdn-icons-png.flaticon.com/512/733/733590.png?w=740&t=st=1687423466~exp=1687424066~hmac=58eecb9b9e9839263f38137ba81c32e0b45514def1a51ca6b7c55f02c570fdd2" alt="" className='h-10 w-10 object-contain'  />
+                </Link>
             </div>
 
             <div className="center flex items-center space-x-3">
-                <input type="text" className='border-2 w-96 h-10 border-black p-2' placeholder='Search' />
+                <input type="text" value={input} className='border-2 w-96 h-10 border-black p-2' placeholder='Search' onChange={(e)=>{setinput(e.target.value)}}/>
+
+                <Link to={`/search/${input}`}>
                 <SearchIcon/>
+                </Link>
             </div>
 
             <div className="right flex space-x-3 items-center">
